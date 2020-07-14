@@ -1610,6 +1610,7 @@ class DeviceSerial(Device):
         QUIET or print('Trying to connect to REPL ', end='', flush=True)
         connected = False
         for _ in range(20):
+            pyb.serial.setRTS(False)
             pyb.serial.write(b'\x03\r')
             data = pyb.read_until(1, b'>>> ', timeout=0.1)
             if data.endswith(b'>>> '):

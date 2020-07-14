@@ -182,6 +182,7 @@ class Pyboard:
         return data
 
     def enter_raw_repl(self):
+        self.serial.setRTS(False)
         self.serial.write(b'\r\x03\x03') # ctrl-C twice: interrupt any running program
 
         # flush input (without relying on serial.flushInput())
